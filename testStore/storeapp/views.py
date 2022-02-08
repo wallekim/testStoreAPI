@@ -1,20 +1,26 @@
 from rest_framework import generics
-from storeapp.serializers import BasketDetailSerializer, ProductListSerializer
+from storeapp.serializers import BasketDetailSerializer, ProductSerializer
 from storeapp.models import Baskets, Products
 from rest_framework import filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class BasketCreateView(generics.CreateAPIView):
     serializer_class = BasketDetailSerializer
 
 
-class BasketDetailView(generics.RetrieveUpdateDestroyAPIView):
+class BasketListlView(generics.ListAPIView):
     serializer_class = BasketDetailSerializer
     queryset = Baskets.objects.all()
 
 
+class ProductDetailView(generics.RetrieveAPIView):
+    serializer_class = ProductSerializer
+    queryset = Products.object
+
+
 class ProductListView(generics.ListAPIView):
-    serializer_class = ProductListSerializer
+    serializer_class = ProductSerializer
     queryset = Products.objects.all()
-    filter_backends = [filters.OrderingFilter]
-    ordering_fields = ('price')
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ('price', 'character')
