@@ -18,7 +18,7 @@ class Products(models.Model):
     name = models.CharField(verbose_name='Name', max_length=256)
     price = models.IntegerField(verbose_name='Price', db_index=True)
     description = models.TextField(verbose_name='Description')
-    image_id = models.ForeignKey(Images, verbose_name='Image gallery', on_delete=models.CASCADE, null=True, blank=True)
+    image_id = models.ManyToManyField(Images, verbose_name='Image gallery', null=True, blank=True)
     character = models.ManyToManyField('Characteristics')
 
     class Meta:
