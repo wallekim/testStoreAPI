@@ -20,8 +20,9 @@ class ProductDetailView(generics.RetrieveAPIView):
 
 class ProductListView(generics.ListAPIView):
     serializer_class = ProductSerializer
-    queryset = Products.objects.all()
+    queryset = Products.objects.prefetch_related('character').all()
+
     filter_backends = (DjangoFilterBackend,)
     filterset_fields = ('price', 'character')
 
-# prefetch_related('character').
+

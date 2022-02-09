@@ -153,6 +153,15 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+
+def show_toolbar(request):
+    return True
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+}
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('email_host')
 EMAIL_USE_SSL = True

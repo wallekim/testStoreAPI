@@ -52,10 +52,14 @@ class Baskets(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
+
+        super(Baskets, self).save(force_insert, force_update, using, update_fields)
+
         subject = 'Thank you for purchase to our site'
         message = ' it  means a world to us '
         email_from = settings.EMAIL_HOST_USER
-        recipient_list = [self.user_id.email]
+        email_to = self.user_id.email
+        recipient_list = [email_to, ]
         send_mail(subject, message, email_from, recipient_list)
 
 
