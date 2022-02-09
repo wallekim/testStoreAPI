@@ -19,11 +19,12 @@ class APITests(APITestCase):
                                           description='The best table of the best')
 
         data = {
-            'product_id': product.id,
+            'product_id': [product.id],
             'user_id': user.id
         }
 
         response = self.client.post(url, data, format='json')
+        print(response.data)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 

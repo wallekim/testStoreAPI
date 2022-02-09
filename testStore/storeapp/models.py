@@ -6,8 +6,8 @@ User = get_user_model()
 
 
 class Images(models.Model):
-    name = models.CharField(verbose_name='Name', max_length=64, null=True)
-    link_to_img = models.FileField(verbose_name='Link to image', upload_to='product_img/', null=True)
+    name = models.CharField(verbose_name='Name', max_length=64)
+    link_to_img = models.FileField(verbose_name='Link to image', upload_to='product_img/')
 
     class Meta:
         verbose_name = 'image'
@@ -18,7 +18,7 @@ class Products(models.Model):
     name = models.CharField(verbose_name='Name', max_length=256)
     price = models.IntegerField(verbose_name='Price', db_index=True)
     description = models.TextField(verbose_name='Description')
-    image_id = models.ForeignKey(Images, verbose_name='Image gallery', on_delete=models.CASCADE)
+    image_id = models.ForeignKey(Images, verbose_name='Image gallery', on_delete=models.CASCADE, null=True, blank=True)
     character = models.ManyToManyField('Characteristics')
 
     class Meta:
