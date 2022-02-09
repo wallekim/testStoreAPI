@@ -7,9 +7,11 @@ from .serializers import *
 
 class APITests(APITestCase):
     def test_create_basket(self):
+
         """
         Test #1
         """
+
         url = reverse('bsktcreate')
 
         user = User.objects.create_user('username', 'Pas$w0rd')
